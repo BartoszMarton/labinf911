@@ -1,0 +1,14 @@
+name: main
+on: push
+jobs:
+  doc:
+    runs-on: ubuntu-slim
+    steps:
+      - uses: actions/checkout@v7
+      - run: sudo apt-get update
+      - run: sudo apt-get install gnuplot-nox texlive-latex-base
+#      - run: gnuplot plot.gpi
+      - run: pdflatex notes.tex
+      - uses: actions/upload-artifact@v7
+        with:
+          path: notes.pdf
